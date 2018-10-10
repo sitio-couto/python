@@ -17,4 +17,7 @@ def countDict(l):
 def getMaxVal(d):
     return max(d, key=d.get)
 
-print(getMaxVal(countDict([1,2,3,3,3,2,1,3,2,2,2,2,2])))
+def getMode(l):
+    return getMaxVal(countDict(l))
+
+print(getMode([1,2,3,3,3,2,1,3,2,2,2,2,2]))
