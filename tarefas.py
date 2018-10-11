@@ -20,4 +20,8 @@ def getMaxVal(d):
 def getMode(l):
     return getMaxVal(countDict(l))
 
-print(getMode([1,2,3,3,3,2,1,3,2,2,2,2,2]))
+def subList(l, s):
+    return any ( l[i:len(s)+i]==s for i in range(len(l)) )
+
+def intersect(a, b):
+    return any ( a[i:]==b[:len(a)-i] for i in range(len(a)-len(b),len(a)))
