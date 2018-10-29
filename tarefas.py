@@ -39,7 +39,7 @@ def time_decorator(function):
 
     return wrapper
 
-class log_decorator:
+class log_decorator(object):
 
     def __init__(self, f):
         self.calls = []
@@ -52,14 +52,17 @@ class log_decorator:
         self.calls.append(["Date: "+now.strftime("%Y-%m-%d %H:%M"),
                            "Arguments: "+str(args),
                            "Return: "+str(ret)])
-        print(self.calls)
         return ret
+
+    def find_call(self, i):
+        print(self.calls[i-1][0])
+        print(self.calls[i-1][1])
+        print(self.calls[i-1][2])
 
 
 @log_decorator
 def dummy(val):
     print(val)
-
 
 @log_decorator
 def dummyb(val, dd, ddd):
