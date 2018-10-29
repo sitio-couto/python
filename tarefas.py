@@ -15,7 +15,7 @@ def countDict(l):
 #     return Counter(l)
 
 def getMaxVal(d):
-    return max(d, key=d.get)
+    return max(d)
 
 def getMode(l):
     return getMaxVal(countDict(l))
@@ -25,3 +25,43 @@ def subList(l, s):
 
 def intersect(a, b):
     return any ( a[i:]==b[:len(a)-i] for i in range(len(a)-len(b),len(a)))
+
+### DECORATORS #################################################################
+
+def time_decorator(function):
+    import time
+
+    def wrapper(*args):
+        ti = time.time()
+        ret = function(*args)
+        print("Execution time for ",function.__name__,":", time.time() - ti)
+        return ret
+
+    return wrapper
+
+class log_decorator:
+
+    def __init__(self, f):
+        self.calls = []
+        self.f = f
+
+    def __call__(self, *args):
+        from datetime import datetime
+        now = datetime.now()
+        ret = self.f(*args)
+        self.calls.append(["Date: "+now.strftime("%Y-%m-%d %H:%M"),
+                           "Arguments: "+str(args),
+                           "Return: "+str(ret)])
+        print(self.calls)
+        return ret
+
+
+@log_decorator
+def dummy(val):
+    print(val)
+
+
+@log_decorator
+def dummyb(val, dd, ddd):
+    print(val, dd, ddd)
+    return "naice"
