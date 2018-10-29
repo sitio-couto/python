@@ -74,6 +74,25 @@ def dicionary_decorator(function):
 
     return wrapper
 
+def log_file(file_name):
+    def logfile_decorator(function):
+        from datetime import datetime
+        file = open(file_name, 'a')
+
+        def wrapper(*args, **kwargs):
+            now = datetime.now().strftime("%Y-%m-%d %H:%M")
+            msg = "Call time: " + now + "\nArguments: " + str(args) + "\n\n"
+            file.write(msg)
+            return function(*args)
+
+        return wrapper
+    return logfile_decorator
+
+
+@log_file("function_log.txt")
+def sub(a, b):
+    return a - b
+
 @dicionary_decorator
 def adding(a, b):
     from time import sleep
