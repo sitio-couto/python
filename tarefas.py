@@ -60,6 +60,26 @@ class log_decorator(object):
         print(self.calls[i-1][2])
 
 
+def dicionary_decorator(function):
+    dic = {}
+
+    def wrapper(*args):
+        if (dic.get(args, False)):
+            ret = dic.get(args)
+        else:
+            ret = function(*args)
+            dic.update({args:ret})
+
+        return ret
+
+    return wrapper
+
+@dicionary_decorator
+def adding(a, b):
+    from time import sleep
+    sleep(2)
+    return a + b
+
 @log_decorator
 def dummy(val):
     print(val)
