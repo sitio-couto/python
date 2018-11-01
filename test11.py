@@ -1,6 +1,18 @@
 import time
 import functools
 
+# class logstr(object):
+#
+#     def __init__(self, f):
+#         self.log = ""
+#         self.f = f
+#
+#     def __call__(self, *args):
+#         ret = self.f(*args)
+#         self.log += time.asctime(time.localtime())
+#         self.log += " entrada: " + str(args) + " saida: " + str(ret) + "\n"
+#         return ret
+
 def logstr(function):
     @functools.wraps(function)
     def wrapper(*args):
