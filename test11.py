@@ -9,7 +9,7 @@ class logstr(object):
     def __call__(self, *args):
         ret = self.f(*args)
         self.log += time.asctime(time.localtime())
-        self.log += " Entrada: " + str(args) + " Return: " + str(ret) + "\n"
+        self.log += " entrada: " + str(args) + " saida: " + str(ret) + "\n"
         return ret
 #
 # def logstr(function):
